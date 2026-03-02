@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ title or "Find Client" }}</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <style>
+      :root { color-scheme: light; }
+      body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; margin: 0; background: #0b1020; color: #e8ecff; }
+      a { color: #a8c7ff; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+      .card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 16px; }
+      .row { display: flex; gap: 16px; align-items: center; justify-content: space-between; }
+      .muted { opacity: 0.75; }
+      .pill { display:inline-block; padding: 2px 10px; border-radius: 999px; background: rgba(168,199,255,0.16); border: 1px solid rgba(168,199,255,0.22); font-size: 12px; }
+      .list { display: grid; gap: 12px; }
+      details { margin: 6px 0; padding: 8px 10px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); }
+      summary { cursor: pointer; }
+      .node-meta { font-size: 12px; opacity: 0.85; }
+      .children { margin-left: 18px; margin-top: 6px; }
+      .topbar { display:flex; gap: 12px; align-items:center; margin-bottom: 14px; }
+      .btn { display:inline-block; padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.08); color: #e8ecff; cursor:pointer; }
+      .btn:hover { background: rgba(255,255,255,0.12); }
+      code { background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 8px; }
+      .grid2 { display: grid; grid-template-columns: 1fr 380px; gap: 12px; align-items: start; }
+      @media (max-width: 980px) { .grid2 { grid-template-columns: 1fr; } }
+      .panel-title { font-weight: 700; margin-bottom: 8px; }
+      .news-item { padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.10); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div style="font-weight:700;">Find Client</div>
+        <div class="muted">客户组织架构与人脉管理（MVP）</div>
+        <div style="flex:1"></div>
+        <a class="btn" href="/docs">API 文档</a>
+        <a class="btn" href="/ui">公司列表</a>
+      </div>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
+

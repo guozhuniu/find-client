@@ -1,0 +1,29 @@
+{% set _has_children = has_children.get(n.id, False) if has_children is defined else False %}
+<details
+  {% if _has_children %}
+    hx-get="/ui/company/{{ company.id if company is defined else company_id }}/children?parent_id={{ n.id }}"
+    hx-trigger="toggle once"
+    hx-target="find .children"
+    hx-swap="innerHTML"
+  {% endif %}
+>
+  <summary>
+    <span style="font-weight:700;">{{ n.display_name }}</span>
+    <span class="pill">{{ n.node_type }}</span>
+    {% if n.person_id %}<span class="muted">Person ID: <code>{{ n.person_id }}</code></span>{% endif %}
+    {% if n.person_id %}
+      <button
+        class="btn"
+        style="margin-left:10px;padding:4px 10px;font-size:12px;"
+        hx-get="/ui/person/{{ n.person_id }}"
+        hx-target="#person-panel"
+        hx-swap="innerHTML"
+        onclick="event.stopPropagation();"
+        type="button"
+      >查看</button>
+    {% endif %}
+    {% if not _has_children %}<span class="muted">（无子节点）</span>{% endif %}
+  </summary>
+  <div class="children"></div>
+</details>
+

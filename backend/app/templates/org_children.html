@@ -1,0 +1,7 @@
+{% for n in children %}
+  {% include "org_node.html" with context %}
+{% endfor %}
+{% if not children %}
+  <div class="muted">（暂无子节点）</div>
+{% endif %}
+

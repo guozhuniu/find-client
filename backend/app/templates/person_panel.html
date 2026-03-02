@@ -1,0 +1,38 @@
+<div class="panel-title">负责人信息</div>
+
+<div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;">
+  <div style="font-size:16px;font-weight:800;">{{ person.name }}</div>
+  {% if person.title %}<span class="pill">{{ person.title }}</span>{% endif %}
+  <span class="muted">Person ID: <code>{{ person.id }}</code></span>
+</div>
+
+<div style="height:8px;"></div>
+
+<div class="muted">
+  {% if person.phones %}电话：<code>{{ person.phones }}</code>{% else %}电话：暂无{% endif %}
+  <br/>
+  {% if person.emails %}邮箱：<code>{{ person.emails }}</code>{% else %}邮箱：暂无{% endif %}
+</div>
+
+<div style="height:12px;"></div>
+
+<div class="panel-title">最近新闻</div>
+{% if news %}
+  {% for n in news %}
+    <div class="news-item">
+      <div style="font-weight:700;">
+        <a href="{{ n.url }}" target="_blank" rel="noreferrer">{{ n.title }}</a>
+      </div>
+      <div class="muted">
+        {% if n.publisher %}{{ n.publisher }}{% endif %}
+        {% if n.published_at %} · {{ n.published_at }}{% endif %}
+      </div>
+      {% if n.summary %}
+        <div style="margin-top:6px;opacity:0.92;">{{ n.summary }}</div>
+      {% endif %}
+    </div>
+  {% endfor %}
+{% else %}
+  <div class="muted">暂无新闻。你可以用爬虫脚本入库（见 README 的 <code>python -m crawler.news_ingest</code>）。</div>
+{% endif %}
+
